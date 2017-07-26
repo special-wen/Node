@@ -1,0 +1,3 @@
+EventEmitter类
+events模块只提供了一个对象：event.EventEmitter.
+EventEmitter的核心就是事件触发
