@@ -1,0 +1,17 @@
+Buffer 缓冲区
+JavaScript语言自身只有字符串数据类型，没有二进制数据类型
+但在处理TCP流或文件流时，必须使用到二进制数据。因此，Buffer专门存放在二进制数据的缓存区
+创建Buffer类：
+1.创建长度为10字节的Buffer实例：
+var buf = new Buffer(10)；
+2.通过给定的数组创建Buffer实例
+var buf = new Buffer([10,20,30,40,50]);
+3.通过一个字符串创建Buf实例
+var buf = new Buffer("connect a buffer","utf-8");
+写入缓冲区
+buf.write(string[,offset[,length]][,encoding])
+参数：string:写入缓冲区的字符串
+     offset:缓冲区开始写入的索引值，默认为0
+     length:写入的字节数，默认为buffer.length
+     encoding:使用的编码。默认为'utf-8'
+返回值:返回写入的大小。如果buffer空间不足，则只会写入部分字符串
