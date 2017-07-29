@@ -2,7 +2,64 @@ JavaScript 语言自身只有字符串数据类型，没有二进制数据类型
 但在处理像TCP流或文件流时，必须使用到二进制数据。
 因此在 Node.js中，定义了一个 Buffer 类，该类用来创建一个专门存放二进制数据的缓存区。
 一个 Buffer 类似于一个整数数组，但它对应于 V8 堆内存之外的一块原始内存。
+
 创建Buffer类
 (1)var buf = new Buffer(10);
 (2)var buf = new Buffer([10,20,30,40,50]);
 (3)var buf = new Buffer("create a new Buffer","utf-8");
+
+写入缓冲区
+buf.write(string[,offset[,length][,encoding]])
+参数:
+string   写入缓冲区的字符串
+offset   缓冲区开始写入索引值，默认为0.
+length   写入的字节数，默认为buffer.length
+encoding 使用编码。默认为utf-8
+返回值
+返回实际写入的大小，如果buffer空间不足，则只会写入部分字符串
+
+从缓冲区读取数据
+buf.toString([encoding[,start[,end]]])
+参数
+encoding:使用的编码
+start:指定位置开始读取索引，默认为0
+end:结束位置，默认缓冲区的最后位置
+返回值
+解码缓冲区数据并使用指定的编码返回字符串
+
+将Buffer转换为JSON对象
+buf.toJSON()
+
+缓冲区合并
+Buffer.concat(list[,totalLength])
+参数
+list:用于合并的buffer对象数组列表
+totalLength:指定合并后Buffer对象的总长度
+返回值
+返回一个多个成员合并的新Buffer对象
+
+缓冲区比较
+buf.compare(otherBuffer)
+返回值：
+返回一个数字，表示buf在otherBuffer之前，之后或相同
+<0:表示buf在otherBuffer之前。=0:表示相同。>0:表示之后
+
+拷贝缓冲区
+buf.copy(targetBuffer[,targetStart[,sourceStart[,sourceEnd]]])
+参数表示:
+targetBuffer:要拷贝的对象
+targetStart:数字，可选，默认：0
+sourceStart:数字，可选，默认：0
+sourceEnd:数字，可选，默认:buffer.length
+没有返回值
+
+缓冲区裁剪
+buf.slice([start[,end]])
+参数
+start:数字, 可选, 默认: 0
+end:数字, 可选, 默认: buffer.length
+返回值
+返回一个新的缓冲区，它和旧缓冲区指向同一块内存，但是从索引 start 到 end 的位置剪切。
+
+缓冲区长度
+buf.length
